@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -35,4 +34,11 @@ public class UserController {
     public List<UserResponse> getAll() {
         return userService.getAll();
     }
+
+    @PostMapping("/login")
+    public UserResponse login(@RequestHeader("Authorization") String auth) {
+        String token = auth.replace("Bearer ", "");
+        return userService.login(token);
+    }
+
 }

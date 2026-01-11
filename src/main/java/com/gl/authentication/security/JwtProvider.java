@@ -27,4 +27,12 @@ public class JwtProvider {
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
+
+    public String getSubject(String token) {
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
 }

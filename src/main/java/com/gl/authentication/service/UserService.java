@@ -12,4 +12,7 @@ public interface UserService {
     UserResponse getById(String id);
 
     List<UserResponse> getAll();
+
+    UserResponse login(String token);
+
 }

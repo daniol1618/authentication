@@ -10,33 +10,83 @@ public class UserResponse {
     private LocalDateTime lastLogin;
     private String token;
     private boolean isActive;
+    private String password;
+
 
     private String name;
     private String email;
     private List<PhoneRequest> phones;
 
     // getters y setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getId() {
+        return id;
+    }
 
-    public LocalDateTime getCreated() { return created; }
-    public void setCreated(LocalDateTime created) { this.created = created; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public LocalDateTime getLastLogin() { return lastLogin; }
-    public void setLastLogin(LocalDateTime lastLogin) { this.lastLogin = lastLogin; }
+    public LocalDateTime getCreated() {
+        return created;
+    }
 
-    public String getToken() { return token; }
-    public void setToken(String token) { this.token = token; }
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
 
-    public boolean isActive() { return isActive; }
-    public void setActive(boolean active) { isActive = active; }
+    public LocalDateTime getLastLogin() {
+        return lastLogin;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setLastLogin(LocalDateTime lastLogin) {
+        this.lastLogin = lastLogin;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getToken() {
+        return token;
+    }
 
-    public List<PhoneRequest> getPhones() { return phones; }
-    public void setPhones(List<PhoneRequest> phones) { this.phones = phones; }
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<PhoneRequest> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<PhoneRequest> phones) {
+        this.phones = phones;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
