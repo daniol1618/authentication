@@ -126,7 +126,7 @@ curl -X POST http://localhost:8080/users \
 
 ```bash
 curl -X POST http://localhost:8080/login \
-  -H "Authorization: Bearer TU_TOKEN_AQUI"
+  -H "Authorization: Bearer EL_TOKEN_ACA"
 ```
 
 Devuelve toda la información del usuario y un nuevo token.
