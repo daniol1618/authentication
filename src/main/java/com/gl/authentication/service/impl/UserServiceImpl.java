@@ -99,8 +99,8 @@ public class UserServiceImpl implements UserService {
 
     private Phone mapToPhone(PhoneRequest pr) {
         Phone p = new Phone();
-        p.setNumber(pr.getNumber());
-        p.setCityCode(pr.getCityCode());
+        p.setNumber(String.valueOf(pr.getNumber()));
+        p.setCityCode(String.valueOf(pr.getCityCode()));
         p.setCountryCode(pr.getCountryCode());
         return p;
     }
@@ -118,8 +118,8 @@ public class UserServiceImpl implements UserService {
         if (user.getPhones() != null) {
             List<PhoneRequest> phones = user.getPhones().stream().map(p -> {
                 PhoneRequest pr = new PhoneRequest();
-                pr.setNumber(p.getNumber());
-                pr.setCityCode(p.getCityCode());
+                pr.setNumber(Long.parseLong(p.getNumber()));
+                pr.setCityCode(Integer.parseInt(p.getCityCode()));
                 pr.setCountryCode(p.getCountryCode());
                 return pr;
             }).collect(Collectors.toList());

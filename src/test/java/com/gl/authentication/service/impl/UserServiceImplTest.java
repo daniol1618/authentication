@@ -45,8 +45,8 @@ class UserServiceImplTest {
         validRequest.setName("Test User");
 
         PhoneRequest phone = new PhoneRequest();
-        phone.setNumber("123456");
-        phone.setCityCode("");
+        phone.setNumber(123456);
+        phone.setCityCode(12);
         phone.setCountryCode("57");
 
         validRequest.setPhones(Collections.singletonList(phone));

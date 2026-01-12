@@ -13,9 +13,10 @@ public class CreateUserRequest {
 
     @NotBlank
     @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,12}$",
-            message = "La contraseña no cumple con el formato requerido"
+            regexp = "^(?=(?:[^A-Z]*[A-Z][^A-Z]*$))(?=(?:\\D*\\d\\D*\\d\\D*$))[a-zA-Z\\d]{8,12}$",
+            message = "La contraseña debe tener una mayúscula y exactamente dos números"
     )
+
     private String password;
 
     private String name; // opcional
@@ -23,15 +24,35 @@ public class CreateUserRequest {
     private List<PhoneRequest> phones; // opcional
 
     // getters y setters
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getPassword() {
+        return password;
+    }
 
-    public List<PhoneRequest> getPhones() { return phones; }
-    public void setPhones(List<PhoneRequest> phones) { this.phones = phones; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<PhoneRequest> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<PhoneRequest> phones) {
+        this.phones = phones;
+    }
 }

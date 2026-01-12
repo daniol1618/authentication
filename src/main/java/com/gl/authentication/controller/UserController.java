@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/sign-up")
 public class UserController {
 
     private final UserService userService;
