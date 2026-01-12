@@ -34,11 +34,4 @@ public class UserController {
     public List<UserResponse> getAll() {
         return userService.getAll();
     }
-
-    @PostMapping("/login")
-    public UserResponse login(@RequestHeader("Authorization") String auth) {
-        String token = auth.replace("Bearer ", "");
-        return userService.login(token);
-    }
-
 }
