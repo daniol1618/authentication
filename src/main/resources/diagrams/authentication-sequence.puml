@@ -2,16 +2,16 @@
 title Authentication Service - Sequence Diagram
 
 actor Client
-participant "UserController" as UC
-participant "LoginController" as LC
+participant "UserController\n(/sign-up)" as UC
+participant "LoginController\n(/login)" as LC
 participant "UserServiceImpl" as US
 participant "UserRepository" as UR
 participant "JwtProvider" as JWT
 database "Database" as DB
 
-== User Registration ==
+== User Registration (/sign-up) ==
 
-Client -> UC : POST /users\nCreateUserRequest
+Client -> UC : POST /sign-up\nCreateUserRequest (JSON)
 UC -> US : createUser(request)
 
 US -> UR : existsByEmail(email)
@@ -33,9 +33,9 @@ US -> JWT : generateToken(email)
 JWT --> US : JWT token
 
 US -> UC : UserResponse
-UC --> Client : 201 Created\nUserResponse + token
+UC --> Client : 201 Created\nUserResponse (JSON)
 
-== User Login ==
+== User Login (/login) ==
 
 Client -> LC : POST /login\nAuthorization: Bearer token
 LC -> US : login(token)
@@ -57,7 +57,7 @@ UR --> US : User
 US -> JWT : generateToken(email)
 JWT --> US : new JWT token
 
-US -> LC : UserResponse (new token)
-LC --> Client : 200 OK\nUserResponse
+US -> LC : UserResponse
+LC --> Client : 200 OK\nUserResponse (JSON)
 
 @enduml

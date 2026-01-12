@@ -1,13 +1,13 @@
 @startuml
-title Authentication Service - Component Diagram (UML Compliant)
+title Authentication Service - Component Diagram
 
 actor Client
 
 package "Authentication Service" {
 
     package "Controllers" {
-        component UserController
-        component LoginController
+        component "UserController\n(/sign-up)" as UserController
+        component "LoginController\n(/login)" as LoginController
     }
 
     package "Services" {
@@ -39,13 +39,12 @@ package "Authentication Service" {
     component GlobalExceptionHandler
 }
 
-database "Relational Database" {
-}
+database "Relational Database"
 
 ' ===== Relationships =====
 
-Client --> UserController : HTTP/JSON
-Client --> LoginController : HTTP/Bearer
+Client --> UserController : HTTP / JSON
+Client --> LoginController : HTTP / Bearer
 
 UserController --> UserService
 LoginController --> UserService
