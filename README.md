@@ -130,7 +130,7 @@ curl --location 'http://localhost:8080/sign-up' \
 
 ```bash
 curl --location --request POST 'http://localhost:8080/login' \
---header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuMkBtYWlsLmNvbSIsImlhdCI6MTc2ODI1NzU2NiwiZXhwIjoxNzY4MjYxMTY2fQ.Aw0KDoQbxjQxLknhXGsIZelx4O9AaTnd3gZkkDvoG5ffQR5QpyKtJUEEq8QXne84dZvlpWlyUsVuDqREwOPl_w'
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuMkBtYWlsLmNvbSIsImlhdCI6MTc2ODI1ODM4NCwiZXhwIjoxNzY4MjYxOTg0fQ.Ao8das6wkcaEZ78b6gzk7POrVz8kLcG7k4HUPAnFEfiDf_iuAR0M8QuZFdHURSj1YQAioz_fQ6eWHxuSQC-kBA'
 ```
 
 Devuelve toda la información del usuario y un nuevo token.
@@ -160,7 +160,7 @@ curl --location 'http://localhost:8080/sign-up' \
 ```
 ### Consultar usuario por Id
 ```bash
-curl --location 'http://localhost:8080/sign-up/930d2a94-5356-4c4f-a7dc-44dd9c11858b'
+curl --location 'http://localhost:8080/sign-up/be77c338-8dff-46b2-99fc-d00fcffde62b'
 ```
 
 ### Consultar todos los usuarios
