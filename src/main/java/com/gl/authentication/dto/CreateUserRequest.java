@@ -19,9 +19,9 @@ public class CreateUserRequest {
 
     private String password;
 
-    private String name; // opcional
+    private String name;
 
-    private List<PhoneRequest> phones; // opcional
+    private List<PhoneRequest> phones;
 
     // getters y setters
     public String getEmail() {

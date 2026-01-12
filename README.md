@@ -7,11 +7,15 @@
 3. [Construcción del Proyecto](#construcción-del-proyecto)
 4. [Ejecución del Proyecto](#ejecución-del-proyecto)
 5. [Ejecución de Pruebas Unitarias](#ejecución-de-pruebas-unitarias)
-6. [Endpoints Disponibles](#endpoints-disponibles-en-formato-curl-para-copiar-y-pegar-en-terminal)
-    - [Crear Usuario](#crear-usuario)
-    - [Login](#login-requiere-token-previo)
-    - [Consultar Usuarios](#consultar-usuarios)
+6. [Endpoints Disponibles en Formato CURL para copiar y pegar en terminal](#endpoints-disponibles-en-formato-curl-para-copiar-y-pegar-en-terminal)
+   - [Crear Usuario](#crear-usuario)
+   - [Login (requiere token previo)](#login-requiere-token-previo)
+   - [Crear Usuario con Contraseña Inválida](#crear-usuario-contrasena-invalida)
+   - [Crear Usuario Duplicado (Email ya existente)](#crear-usuario-duplicado-email-ya-existente)
+   - [Consultar Usuario por Id](#consultar-usuario-por-id)
+   - [Consultar Todos los Usuarios](#consultar-todos-los-usuarios)
 7. [Formato Estándar de Errores](#formato-estándar-de-errores)
+
 
 ## Descripción General
 Microservicio desarrollado con **Spring Boot 2.5.14** y **Gradle 7.4** para la creación, consulta y autenticación de usuarios.
@@ -104,12 +108,12 @@ Si alguna prueba falla, el proceso terminará con error y se mostrará el detall
 ### Crear usuario
 
 ```bash
-curl -X POST http://localhost:8080/sign-up \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "juan@mail.com",
-    "password": "a2asfGf4",
-    "name": "Juan Pérez",
+curl --location 'http://localhost:8080/sign-up' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "juan2@mail.com",
+    "password": "a2asfGfdfdf4",
+    "name": "Juan Perez",
     "phones": [
       {
         "number": 1234567,
@@ -117,7 +121,7 @@ curl -X POST http://localhost:8080/sign-up \
         "countryCode": "57"
       }
     ]
-  }'
+}'
 ```
 
 ---
@@ -125,23 +129,43 @@ curl -X POST http://localhost:8080/sign-up \
 ### Login (requiere token previo)
 
 ```bash
-curl -X POST http://localhost:8080/login \
-  -H "Authorization: Bearer EL_TOKEN_ACA"
+curl --location --request POST 'http://localhost:8080/login' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuMkBtYWlsLmNvbSIsImlhdCI6MTc2ODI1NzU2NiwiZXhwIjoxNzY4MjYxMTY2fQ.Aw0KDoQbxjQxLknhXGsIZelx4O9AaTnd3gZkkDvoG5ffQR5QpyKtJUEEq8QXne84dZvlpWlyUsVuDqREwOPl_w'
 ```
 
 Devuelve toda la información del usuario y un nuevo token.
 
 ---
 
-### Consultar usuarios
-
+### Crear Usuario Contrasena Invalida
 ```bash
-# Listar todos
-curl http://localhost:8080/sign-up
+curl --location 'http://localhost:8080/sign-up' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"email": "ana@mail.com",
+"password": "abcdef",
+"name": "Ana"
+}'
+```
 
-# Buscar por id
-curl http://localhost:8080/sign-up/{id}
+### Crear Usuario Duplicado (Email ya existente)
+```bash
+curl --location 'http://localhost:8080/sign-up' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"email": "juan2@mail.com",
+"password": "a2asfGf4",
+"name": "Juan Duplicado"
+}'
+```
+### Consultar usuario por Id
+```bash
+curl --location 'http://localhost:8080/sign-up/930d2a94-5356-4c4f-a7dc-44dd9c11858b'
+```
 
+### Consultar todos los usuarios
+```bash
+curl --location 'http://localhost:8080/sign-up'
 ```
 
 ---

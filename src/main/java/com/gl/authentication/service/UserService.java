@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    com.gl.authentication.dto.UserResponse createUser(CreateUserRequest request);
+    UserResponse createUser(CreateUserRequest request);
 
     UserResponse getById(String id);
 
