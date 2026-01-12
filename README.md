@@ -18,8 +18,8 @@ Microservicio desarrollado con **Spring Boot 2.5.14** y **Gradle 7.4** para la c
 
 El servicio permite:
 
-- Crear usuarios (`POST /users`)
-- Consultar usuarios (`GET /users`, `GET /users/{id}`)
+- Crear usuarios (`POST /sign-up`)
+- Consultar usuarios (`GET /sign-up`, `GET /sign-up/{id}`)
 - Autenticarse mediante token (`POST /login`)
 - Persistir datos en base de datos en memoria **H2**
 - Generar y renovar tokens **JWT**
@@ -104,7 +104,7 @@ Si alguna prueba falla, el proceso terminará con error y se mostrará el detall
 ### Crear usuario
 
 ```bash
-curl -X POST http://localhost:8080/users \
+curl -X POST http://localhost:8080/sign-up \
   -H "Content-Type: application/json" \
   -d '{
     "email": "juan@mail.com",
@@ -112,8 +112,8 @@ curl -X POST http://localhost:8080/users \
     "name": "Juan Pérez",
     "phones": [
       {
-        "number": "1234567",
-        "cityCode": "1",
+        "number": 1234567,
+        "cityCode": 1,
         "countryCode": "57"
       }
     ]
@@ -137,10 +137,11 @@ Devuelve toda la información del usuario y un nuevo token.
 
 ```bash
 # Listar todos
-curl http://localhost:8080/users
+curl http://localhost:8080/sign-up
 
 # Buscar por id
-curl http://localhost:8080/users/{id}
+curl http://localhost:8080/sign-up/{id}
+
 ```
 
 ---
