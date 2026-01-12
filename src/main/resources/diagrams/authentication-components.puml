@@ -1,0 +1,67 @@
+@startuml
+title Authentication Service - Component Diagram (UML Compliant)
+
+actor Client
+
+package "Authentication Service" {
+
+    package "Controllers" {
+        component UserController
+        component LoginController
+    }
+
+    package "Services" {
+        interface UserService
+        component UserServiceImpl
+    }
+
+    package "Security" {
+        component JwtProvider
+        component SecurityConfig
+        component BCryptPasswordEncoder
+    }
+
+    package "Persistence" {
+        component UserRepository
+    }
+
+    package "Domain" {
+        component User <<Entity>>
+        component Phone <<Entity>>
+    }
+
+    package "DTOs" {
+        component CreateUserRequest <<DTO>>
+        component UserResponse <<DTO>>
+        component PhoneRequest <<DTO>>
+    }
+
+    component GlobalExceptionHandler
+}
+
+database "Relational Database" {
+}
+
+' ===== Relationships =====
+
+Client --> UserController : HTTP/JSON
+Client --> LoginController : HTTP/Bearer
+
+UserController --> UserService
+LoginController --> UserService
+
+UserService <|.. UserServiceImpl
+
+UserServiceImpl --> UserRepository
+UserServiceImpl --> JwtProvider
+UserServiceImpl --> BCryptPasswordEncoder
+
+UserRepository --> User
+User --> Phone
+
+UserRepository --> "Relational Database"
+
+GlobalExceptionHandler ..> UserController
+GlobalExceptionHandler ..> LoginController
+
+@enduml

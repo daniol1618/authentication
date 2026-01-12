@@ -1,0 +1,63 @@
+@startuml
+title Authentication Service - Sequence Diagram
+
+actor Client
+participant "UserController" as UC
+participant "LoginController" as LC
+participant "UserServiceImpl" as US
+participant "UserRepository" as UR
+participant "JwtProvider" as JWT
+database "Database" as DB
+
+== User Registration ==
+
+Client -> UC : POST /users\nCreateUserRequest
+UC -> US : createUser(request)
+
+US -> UR : existsByEmail(email)
+UR --> US : false
+
+US -> US : encode password (BCrypt)
+US -> US : set created, lastLogin, active
+
+alt Phones provided
+    US -> US : map PhoneRequest → Phone
+end
+
+US -> UR : save(User)
+UR -> DB : INSERT user + phones
+DB --> UR : User saved
+UR --> US : User
+
+US -> JWT : generateToken(email)
+JWT --> US : JWT token
+
+US -> UC : UserResponse
+UC --> Client : 201 Created\nUserResponse + token
+
+== User Login ==
+
+Client -> LC : POST /login\nAuthorization: Bearer token
+LC -> US : login(token)
+
+US -> JWT : getSubject(token)
+JWT --> US : email
+
+US -> UR : findByEmail(email)
+UR -> DB : SELECT user
+DB --> UR : User
+UR --> US : User
+
+US -> US : update lastLogin
+US -> UR : save(User)
+UR -> DB : UPDATE user
+DB --> UR : User updated
+UR --> US : User
+
+US -> JWT : generateToken(email)
+JWT --> US : new JWT token
+
+US -> LC : UserResponse (new token)
+LC --> Client : 200 OK\nUserResponse
+
+@enduml
